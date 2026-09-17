@@ -1,0 +1,788 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday A 🎂</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background:
+        radial-gradient(circle at 50% 25%, #292929 0%, #111 48%, #070707 100%);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.glow {
+    position: fixed;
+    width: 380px;
+    height: 380px;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: .14;
+    pointer-events: none;
+}
+
+.glow.red {
+    background: #8b1e31;
+    top: -150px;
+    left: -120px;
+}
+
+.glow.green {
+    background: #31563d;
+    bottom: -150px;
+    right: -120px;
+}
+
+.container {
+    width: min(900px, 94vw);
+    min-height: 680px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.title {
+    margin-bottom: 5px;
+}
+
+.title small {
+    display: block;
+    color: #888;
+    letter-spacing: 5px;
+    font-size: 11px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.title h1 {
+    font-size: clamp(42px, 8vw, 72px);
+    font-weight: 800;
+    letter-spacing: -3px;
+}
+
+.title h1 span {
+    color: #a5263a;
+}
+
+.age {
+    color: #777;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* CAKE */
+
+.cake-area {
+    position: relative;
+    width: 450px;
+    height: 380px;
+    margin-top: -5px;
+}
+
+.cake-shadow {
+    position: absolute;
+    width: 340px;
+    height: 35px;
+    background: #000;
+    opacity: .7;
+    filter: blur(15px);
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.plate {
+    position: absolute;
+    width: 390px;
+    height: 28px;
+    background: linear-gradient(#555, #222);
+    border-radius: 50%;
+    bottom: 42px;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 7px 0 #0b0b0b;
+}
+
+/* Bottom cake */
+
+.cake-bottom {
+    position: absolute;
+    width: 315px;
+    height: 105px;
+    left: 50%;
+    bottom: 67px;
+    transform: translateX(-50%);
+    background:
+        linear-gradient(
+            to right,
+            #351914,
+            #672a22 25%,
+            #874035 50%,
+            #672a22 75%,
+            #351914
+        );
+    border-radius: 20px 20px 30px 30px;
+    box-shadow:
+        inset 0 -13px rgba(0,0,0,.25),
+        0 12px 18px rgba(0,0,0,.5);
+}
+
+/* Frosting */
+
+.frosting {
+    position: absolute;
+    width: 315px;
+    height: 37px;
+    left: 50%;
+    bottom: 148px;
+    transform: translateX(-50%);
+    background: #241313;
+    border-radius: 50%;
+    z-index: 3;
+}
+
+.frosting::after {
+    content: "";
+    position: absolute;
+    width: 315px;
+    height: 45px;
+    top: 5px;
+    left: 0;
+    background: #651e2b;
+    border-radius: 50%;
+    z-index: -1;
+}
+
+/* Top cake */
+
+.cake-top {
+    position: absolute;
+    width: 265px;
+    height: 78px;
+    left: 50%;
+    bottom: 153px;
+    transform: translateX(-50%);
+    background:
+        linear-gradient(
+            to right,
+            #381b17,
+            #713128 30%,
+            #8b4336 50%,
+            #713128 70%,
+            #381b17
+        );
+    border-radius: 50% 50% 18px 18px;
+    box-shadow: inset 0 -10px rgba(0,0,0,.2);
+}
+
+.icing {
+    position: absolute;
+    width: 265px;
+    height: 42px;
+    top: -12px;
+    left: 0;
+    background: #171010;
+    border-radius: 50%;
+}
+
+.drip {
+    position: absolute;
+    background: #171010;
+    width: 25px;
+    border-radius: 0 0 15px 15px;
+}
+
+.drip:nth-child(1) {
+    left: 35px;
+    height: 45px;
+}
+
+.drip:nth-child(2) {
+    left: 90px;
+    height: 31px;
+}
+
+.drip:nth-child(3) {
+    left: 145px;
+    height: 44px;
+}
+
+.drip:nth-child(4) {
+    left: 200px;
+    height: 29px;
+}
+
+/* BERRIES */
+
+.berry {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: radial-gradient(circle at 35% 30%, #cf5262, #671522);
+    border-radius: 50%;
+    z-index: 6;
+    box-shadow: inset -3px -3px 5px rgba(0,0,0,.35);
+}
+
+.berry::after {
+    content: "✦";
+    position: absolute;
+    color: #526b51;
+    font-size: 14px;
+    top: -11px;
+    left: 7px;
+}
+
+.berry.one {
+    left: 95px;
+    top: -2px;
+}
+
+.berry.two {
+    right: 92px;
+    top: 4px;
+}
+
+.berry.three {
+    left: 50%;
+    transform: translateX(-50%);
+    top: 7px;
+}
+
+/* CLICKABLE 22 */
+
+.number-candles {
+    position: absolute;
+    left: 50%;
+    bottom: 215px;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 50;
+    cursor: pointer;
+    user-select: none;
+    transition: .7s ease;
+}
+
+.number-candle {
+    position: relative;
+    width: 60px;
+    height: 78px;
+    color: #a5263a;
+    font-family: Arial Black, Arial, sans-serif;
+    font-size: 78px;
+    font-weight: 900;
+    line-height: 78px;
+    text-shadow:
+        2px 3px 0 #4c111b,
+        4px 7px 9px rgba(0,0,0,.6);
+    cursor: pointer;
+    transition: transform .3s ease;
+}
+
+.number-candle:hover {
+    transform: translateY(-7px) scale(1.06);
+}
+
+.flame {
+    position: absolute;
+    width: 18px;
+    height: 28px;
+    background: linear-gradient(
+        #fff1a6,
+        #ff9c38,
+        #d72d25
+    );
+    border-radius: 50% 50% 50% 0;
+    transform: rotate(-45deg);
+    top: -29px;
+    left: 21px;
+    animation: flicker .14s infinite alternate;
+    box-shadow: 0 0 17px #ff7733;
+    pointer-events: none;
+}
+
+.flame::after {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 12px;
+    background: #fff5c7;
+    border-radius: 50%;
+    top: 8px;
+    left: 6px;
+}
+
+@keyframes flicker {
+    from {
+        transform: rotate(-45deg) scale(1);
+    }
+
+    to {
+        transform: rotate(-39deg) scale(1.1);
+    }
+}
+
+.number-candles.blown {
+    transform: translateX(-50%) translateY(-20px) scale(.85);
+    opacity: .2;
+    pointer-events: none;
+}
+
+/* DECORATIONS */
+
+.decoration {
+    position: absolute;
+    font-size: 21px;
+    opacity: .8;
+    animation: floating 3s ease-in-out infinite;
+}
+
+.d1 {
+    left: 35px;
+    top: 100px;
+    color: #a5263a;
+}
+
+.d2 {
+    right: 30px;
+    top: 130px;
+    color: #526b51;
+    animation-delay: .8s;
+}
+
+.d3 {
+    left: 65px;
+    bottom: 82px;
+    color: #d17c8a;
+    animation-delay: 1.3s;
+}
+
+.d4 {
+    right: 75px;
+    bottom: 100px;
+    color: #526b51;
+    animation-delay: 1.8s;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.instruction {
+    color: #888;
+    font-size: 13px;
+    letter-spacing: 1px;
+    margin-top: -2px;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+/* NOTE */
+
+.note {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,.78);
+    backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: .5s;
+    z-index: 100;
+}
+
+.note.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.note-card {
+    width: min(480px, 88vw);
+    background: linear-gradient(145deg, #1d1d1d, #101010);
+    border: 1px solid #59232e;
+    border-radius: 25px;
+    padding: 45px 35px;
+    text-align: center;
+    box-shadow: 0 30px 80px rgba(0,0,0,.75);
+    transform: scale(.8) translateY(30px);
+    transition: .5s;
+}
+
+.note.show .note-card {
+    transform: scale(1) translateY(0);
+}
+
+.heart {
+    font-size: 42px;
+    color: #a5263a;
+    margin-bottom: 12px;
+}
+
+.note-card h2 {
+    font-size: 30px;
+    margin-bottom: 18px;
+}
+
+.note-card p {
+    color: #bbb;
+    line-height: 1.8;
+    font-size: 15px;
+}
+
+.close {
+    margin-top: 25px;
+    background: #7d2030;
+    color: white;
+    border: none;
+    padding: 11px 25px;
+    border-radius: 22px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.close:hover {
+    background: #a52b3e;
+    transform: translateY(-2px);
+}
+
+/* CONFETTI */
+
+.confetti {
+    position: fixed;
+    width: 7px;
+    height: 12px;
+    top: -20px;
+    z-index: 200;
+    animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    body {
+        overflow: hidden;
+    }
+
+    .container {
+        min-height: 100vh;
+    }
+
+    .title h1 {
+        font-size: 46px;
+    }
+
+    .cake-area {
+        transform: scale(.78);
+        margin-top: -20px;
+        margin-bottom: -30px;
+    }
+
+    .decoration {
+        display: none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="glow red"></div>
+<div class="glow green"></div>
+
+<div class="container">
+
+    <div class="title">
+        <small>today is special</small>
+
+        <h1>
+            Happy Birthday <span>A</span>
+        </h1>
+
+        <div class="age">
+            22 years of being amazing ✦
+        </div>
+    </div>
+
+
+    <div class="cake-area">
+
+        <div class="decoration d1">✦</div>
+        <div class="decoration d2">✧</div>
+        <div class="decoration d3">♡</div>
+        <div class="decoration d4">✦</div>
+
+        <div class="cake-shadow"></div>
+
+        <div class="plate"></div>
+
+        <div class="cake-bottom"></div>
+
+        <div class="frosting"></div>
+
+        <div class="cake-top">
+
+            <div class="icing">
+
+                <div class="drip"></div>
+                <div class="drip"></div>
+                <div class="drip"></div>
+                <div class="drip"></div>
+
+            </div>
+
+            <div class="berry one"></div>
+            <div class="berry two"></div>
+            <div class="berry three"></div>
+
+        </div>
+
+
+        <!-- CLICK THE 22 -->
+        <div
+            class="number-candles"
+            id="candles"
+            onclick="blowCandles()"
+        >
+
+            <div class="number-candle">
+                2
+                <div class="flame"></div>
+            </div>
+
+            <div class="number-candle">
+                2
+                <div class="flame"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <p class="instruction">
+        ✦ Click the candles to make a wish ✦
+    </p>
+
+</div>
+
+
+<!-- BIRTHDAY NOTE -->
+
+<div class="note" id="note">
+
+    <div class="note-card">
+
+        <div class="heart">♥</div>
+
+        <h2>Happy 22nd, A</h2>
+
+        <p>
+            Another year, another chapter. 🤍
+            <br><br>
+
+            I hope 22 brings you beautiful moments,
+            unexpected happiness, unforgettable memories,
+            and everything you've been wishing for.
+            <br><br>
+
+            Keep being you.
+            The best parts of your story are still ahead.
+        </p>
+
+        <button
+            class="close"
+            onclick="closeNote()"
+        >
+            Close ♡
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+let candlesBlown = false;
+
+function blowCandles() {
+
+    if (candlesBlown) return;
+
+    candlesBlown = true;
+
+    const candles =
+        document.getElementById("candles");
+
+    const flames =
+        document.querySelectorAll(".flame");
+
+
+    /* Blow out flames */
+
+    flames.forEach((flame, index) => {
+
+        setTimeout(() => {
+
+            flame.style.animation = "none";
+            flame.style.opacity = "0";
+            flame.style.transform =
+                "rotate(-45deg) scale(.1) translateY(15px)";
+
+        }, index * 120);
+
+    });
+
+
+    /* Candle movement */
+
+    setTimeout(() => {
+
+        candles.classList.add("blown");
+
+    }, 250);
+
+
+    /* Confetti */
+
+    createConfetti();
+
+
+    /* Open note */
+
+    setTimeout(() => {
+
+        document
+            .getElementById("note")
+            .classList.add("show");
+
+    }, 800);
+}
+
+
+function closeNote() {
+
+    document
+        .getElementById("note")
+        .classList.remove("show");
+}
+
+
+/* CONFETTI */
+
+function createConfetti() {
+
+    const colors = [
+        "#8b2635",
+        "#b33a4a",
+        "#526b51",
+        "#d17c8a",
+        "#777777",
+        "#eeeeee"
+    ];
+
+
+    for (let i = 0; i < 80; i++) {
+
+        const piece =
+            document.createElement("div");
+
+        piece.classList.add("confetti");
+
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+
+        piece.style.background =
+            colors[
+                Math.floor(
+                    Math.random() * colors.length
+                )
+            ];
+
+
+        piece.style.animationDuration =
+            (2 + Math.random() * 2) + "s";
+
+
+        piece.style.animationDelay =
+            Math.random() * .4 + "s";
+
+
+        piece.style.transform =
+            `rotate(${Math.random() * 360}deg)`;
+
+
+        document.body.appendChild(piece);
+
+
+        setTimeout(() => {
+
+            piece.remove();
+
+        }, 4500);
+    }
+}
+
+
+/* Click outside note to close */
+
+document
+    .getElementById("note")
+    .addEventListener("click", function(event) {
+
+        if (event.target === this) {
+            closeNote();
+        }
+
+    });
+
+</script>
+
+</body>
+</html>
+```
